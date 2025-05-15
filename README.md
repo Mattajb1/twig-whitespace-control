@@ -2,7 +2,7 @@
 This extension allows quick toggling of twig whitespace controls
 
 - Ctrl+Alt+W toggles on/off whitespace controls for any selected twig code
-
+___
 ### Add extension to VSCode
 #### Dependencies:
 - **Node.js** - `https://nodejs.org/`
