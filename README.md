@@ -9,5 +9,5 @@ ___
 - **vsce** - `npm install -g @vscode/vsce`
 #### Setup:
 - Package extension from repo in vsc `vsce package`
-- Install packaged .vsix file `code --install-extension PACKAGE-NAME.vsix` _Package name will usually be twig-whitespace-control-0.0.1_
+- Install packaged .vsix file `code --install-extension PACKAGE-NAME.vsix`. _Package name will usually be_ `twig-whitespace-control-0.0.1`
 - Check extensions list in vsc and ensure extension is enabled
