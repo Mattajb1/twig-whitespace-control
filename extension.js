@@ -48,7 +48,7 @@ function activate(context) {
 			}
 
 			if (replacedText.includes('{#-')) {
-				replacedText = replacedText.replaceAll('{#-', '{-');
+				replacedText = replacedText.replaceAll('{#-', '{#');
 			} else if (replacedText.includes('{#')) {
 				replacedText = replacedText.replaceAll('{#', '{#-');
 			}
