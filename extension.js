@@ -12,7 +12,7 @@ function activate(context) {
 		if (editor) {
 			const selection = editor.selection;
 			let selectedText = editor.document.getText(selection);
-			
+
 			// Declare replacement text
 			let replacedText = selectedText;
 
@@ -39,7 +39,19 @@ function activate(context) {
 				replacedText = replacedText.replaceAll('-}}', '}}');
 			} else if (replacedText.includes('}}')) {
 				replacedText = replacedText.replaceAll('}}', '-}}');
-			}					
+			}
+
+			if (replacedText.includes('-#}')) {
+				replacedText = replacedText.replaceAll('-#}', '#}');
+			} else if (replacedText.includes('#}')) {
+				replacedText = replacedText.replaceAll('#}', '-#}');
+			}
+
+			if (replacedText.includes('{#-')) {
+				replacedText = replacedText.replaceAll('{#-', '{-');
+			} else if (replacedText.includes('{#')) {
+				replacedText = replacedText.replaceAll('{#', '{#-');
+			}
 
 			if (replacedText !== selectedText) {
 				editor.edit(editBuilder => {
