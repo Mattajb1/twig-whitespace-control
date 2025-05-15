@@ -7,27 +7,46 @@ const vscode = require('vscode');
  */
 function activate(context) {
 
-
-	console.log('test');
-
 	const disposable = vscode.commands.registerCommand('twig-whitespace-control.toggleWhitespace', function () {
-			const editor = vscode.window.activeTextEditor;
-	if (editor) {
-		const selection = editor.selection;
-		let selectedText = editor.document.getText(selection);
-		
-		if (selectedText.includes('{%')) {
-			let replacedText = selectedText.replaceAll('{%', '{%-')
-
-			editor.edit(editBuilder => {
-				editBuilder.replace(selection, replacedText)
-			})
+	const editor = vscode.window.activeTextEditor;
+		if (editor) {
+			const selection = editor.selection;
+			let selectedText = editor.document.getText(selection);
 			
-		}
+			// Declare replacement text
+			let replacedText = selectedText;
 
-		vscode.window.showInformationMessage(selectedText);
-	}
-	
+			// Toggle whitespace cases
+			if (replacedText.includes('{%-')) {
+				replacedText = replacedText.replaceAll('{%-', '{%');
+			} else if (replacedText.includes('{%')) {
+				replacedText = replacedText.replaceAll('{%', '{%-');
+			}
+
+			if (replacedText.includes('-%}')) {
+				replacedText = replacedText.replaceAll('-%}', '%}');
+			} else if (replacedText.includes('%}')) {
+				replacedText = replacedText.replaceAll('%}', '-%}');
+			}
+
+			if (replacedText.includes('{{-')) {
+				replacedText = replacedText.replaceAll('{{-', '{{');
+			} else if (replacedText.includes('{{')) {
+				replacedText = replacedText.replaceAll('{{', '{{-');
+			}
+
+			if (replacedText.includes('-}}')) {
+				replacedText = replacedText.replaceAll('-}}', '}}');
+			} else if (replacedText.includes('}}')) {
+				replacedText = replacedText.replaceAll('}}', '-}}');
+			}					
+
+			if (replacedText !== selectedText) {
+				editor.edit(editBuilder => {
+				editBuilder.replace(selection, replacedText);
+				});
+			}
+		}
 	});
 
 	context.subscriptions.push(disposable);
