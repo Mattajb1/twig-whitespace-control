@@ -16,6 +16,10 @@
       {
         "command": "twig-whitespace-control.toggleWhitespace",
         "title": "Toggle Whitespace"
+      },
+      {
+        "command": "twig-whitespace-control.oneLine",
+        "title": "One line"
       }
     ],
     "keybindings": [
@@ -23,7 +27,12 @@
         "command": "twig-whitespace-control.toggleWhitespace",
         "key": "ctrl+alt+w",
         "when": "editorTextFocus"
-      }
+      },
+      {
+        "command": "twig-whitespace-control.oneLine",
+        "key": "ctrl+alt+q",
+        "when": "editorTextFocus"
+      }      
     ]
   },
   "scripts": {
