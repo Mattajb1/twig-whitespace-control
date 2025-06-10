@@ -20,6 +20,10 @@
       {
         "command": "twig-whitespace-control.oneLine",
         "title": "One line"
+      },
+      {
+        "command": "twig-whitespace-control.twigBeautify",
+        "title": "Twig Beautify"
       }
     ],
     "keybindings": [
@@ -32,7 +36,12 @@
         "command": "twig-whitespace-control.oneLine",
         "key": "ctrl+alt+q",
         "when": "editorTextFocus"
-      }      
+      },
+      {
+        "command": "twig-whitespace-control.twigBeautify",
+        "key": "ctrl+alt+b",
+        "when": "editorTextFocus"
+      }          
     ]
   },
   "scripts": {

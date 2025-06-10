@@ -84,6 +84,45 @@ function activate(context) {
 		}
 	})
 
+	// FUNCTION: Twig beautify (WIP)
+	const twigBeautify = vscode.commands.registerCommand('twig-whitespace-control.twigBeautify', function () {
+		const editor = vscode.window.activeTextEditor;
+		if (editor) {
+			const selection = editor.selection;
+			let selectedText = editor.document.getText(selection);
+
+			let replacedText = selectedText;
+
+			// Twig cases
+			if (replacedText.includes('%}')) {
+				replacedText = replacedText.replaceAll('-%}', '%}');
+			} else if (replacedText.includes('%}')) {
+				replacedText = replacedText.replaceAll('%}', '-%}');
+			}
+
+			if (replacedText.includes('-}}')) {
+				replacedText = replacedText.replaceAll('-}}', '}}');
+			} else if (replacedText.includes('}}')) {
+				replacedText = replacedText.replaceAll('}}', '-}}');
+			}
+
+			if (replacedText.includes('-#}')) {
+				replacedText = replacedText.replaceAll('-#}', '#}');
+			} else if (replacedText.includes('#}')) {
+				replacedText = replacedText.replaceAll('#}', '-#}');
+			}
+
+			if (replacedText !== selectedText) {
+				console.log('Not finished')
+				/*
+				editor.edit(editBuilder => {
+				editBuilder.replace(selection, replacedText); 
+				});
+				*/
+			}
+		}
+	});
+
 	// Push functiions to disposable array subscriptions
 	context.subscriptions.push(toggleWhitespace, oneLine);
 }
